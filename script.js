@@ -1,30 +1,59 @@
-var last_known_scroll_position = 0;
-var ticking = false;
-var top_bar_active = false;
-var topBar = document.getElementById("top_bar");
-var threshold = 420;
-
-function doSomething(scroll_pos) {
-  if(scroll_pos > threshold && !top_bar_active){
-  	top_bar_active = true;
-  	topBar.className = "";
-  }
-  if(scroll_pos < threshold && top_bar_active){
-  	top_bar_active = false;
-  	topBar.className = "hide";
-  }
+var scrollChange = {
+	last_known_scroll_position: 0,
+	ticking: false,
+	top_bar_active: false,
+	topBar: document.getElementById("top_bar"),
+	threshold: 420,
+	doSomething: function (){
+		if(scrollChange.last_known_scroll_position > scrollChange.threshold && !scrollChange.top_bar_active){
+	  		scrollChange.top_bar_active = true;
+	  		scrollChange.topBar.className = "";
+		}
+		if(scrollChange.last_known_scroll_position < scrollChange.threshold && scrollChange.top_bar_active){
+	 		scrollChange.top_bar_active = false;
+	 		scrollChange.topBar.className = "hide";
+		}
+	}
 }
 
 window.addEventListener('scroll', function(e) {
-  last_known_scroll_position = window.scrollY;
-  if (!ticking) {
+  scrollChange.last_known_scroll_position = window.scrollY;
+  if (!scrollChange.ticking) {
     window.requestAnimationFrame(function() {
-      doSomething(last_known_scroll_position);
-      ticking = false;
+      scrollChange.doSomething();
+      scrollChange.ticking = false;
     });
   }
-  ticking = true;
+  scrollChange.ticking = true;
 });
+
+var sqlButton = {
+	entity: document.querySelector("#sql_button"),
+	content: document.querySelector(".content"),
+	query: document.querySelectorAll(".code"),
+	on: false,
+	toggleShow: function(){
+		if(!sqlButton.on){
+			sqlButton.on = true;
+			console.log(sqlButton.entity, sqlButton.content);
+			sqlButton.content.id = "active_SQL";
+			sqlButton.query.forEach(function(element){
+				element.className = "code";
+			});
+			console.log("Activating!");
+		}
+		else if(sqlButton.on){
+			sqlButton.on = false;
+			sqlButton.content.id = "";
+			sqlButton.query.forEach(function(element){
+				element.className = "code hide";
+			});
+			console.log("Deactivating!");
+		}
+	}
+}
+
+sqlButton.entity.addEventListener('click', sqlButton.toggleShow);
 
 
 //Chart related javascript

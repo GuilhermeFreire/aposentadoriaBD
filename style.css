@@ -38,12 +38,17 @@ body{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3da87b', endColorstr='#3b6a78',GradientType=0 ); /* IE6-9 */
 }
 
-#content{
+.content{
 	width: 50%;
-	margin: 0 auto;
+	margin: 0 25%;
+	transition: margin-left 0.5s;
 }
 
-#content p{
+#active_SQL{
+	margin-left: 15%;
+}
+
+.content p{
 	font-family: Roboto, sans-serif;
 	font-size: 16px;
 	line-height: 24px;
@@ -67,6 +72,7 @@ body{
 
 .hide{
 	opacity: 0;
+	transition: opacity 0.5s
 }
 
 .hide #sql_button{
@@ -75,7 +81,7 @@ body{
 
 #sql_button{
 	margin: 22px;
-	margin-right: 250px;
+	margin-right: 20%;
 	padding: 5px 15px;
 	display: block;
 	float: right;
@@ -87,6 +93,34 @@ body{
 	border-radius: 15px;
 	cursor: pointer;
 	transition: opacity 0.25s;
+}
+
+.code_chart_wrapper{
+	position: relative;
+}
+
+
+.code_chart_wrapper .code{
+	transition: opacity 0.5s;
+}
+/*SQL column related content*/
+.hide .code{
+	opacity:0;
+}
+
+.code p{
+	position: absolute;
+	top:0;
+	left: 105%;
+	width: 200px;
+	min-width: 25%;
+	max-width: 50%;
+	padding: 10px;
+	display: inline-block;
+	font-family: Inconsolata, Times, monospace;
+	background: #DDDDDD;
+	border-radius: 15px;
+	transition: opacity 0.5s;
 }
 
 
