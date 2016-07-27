@@ -2,6 +2,20 @@ body{
 	margin: 0;
 }
 
+h1, h2{
+	font-family: Lato;
+	font-weight: 300;
+}
+
+h2{
+	margin-top: 5%;
+}
+
+a{
+	color: #3da87b;
+	text-decoration: none;
+}
+
 #header h1{
 	position: relative;
 	margin: 0 auto;
@@ -41,6 +55,7 @@ body{
 .content{
 	width: 50%;
 	margin: 0 25%;
+	margin-top: 5%;
 	transition: margin-left 0.5s;
 }
 
@@ -72,7 +87,6 @@ body{
 
 .hide{
 	opacity: 0;
-	transition: opacity 0.5s
 }
 
 .hide #sql_button{
@@ -121,6 +135,17 @@ body{
 	background: #DDDDDD;
 	border-radius: 15px;
 	transition: opacity 0.5s;
+}
+
+.code_strong{
+	font-weight: 600;
+}
+
+.code_highlight{
+	padding: 2px 5px;
+	font-family: Inconsolata, Times, monospace;
+	background: #DDDDDD;
+	border-radius: 5px;
 }
 
 

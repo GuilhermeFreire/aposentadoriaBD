@@ -1,0 +1,6 @@
+{
+	"queries":{
+		"chart1": "SELECT ano AS x, sum(valor) AS y FROM aposentadoria WHERE valor > 0 GROUP BY ano ORDER BY ano;",
+		"chart2": "SELECT * FROM sexo;"
+	}
+}

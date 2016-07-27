@@ -16,10 +16,19 @@
 		<h2>subtitle or something</h2>
 	</div>
 	<div class="content">
-		<h1>Titulo do trabalho</h1>
-		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+		<h1>Aposentadoria brasileira e suas repercursões</h1>
+		<p>O tópico de aposentadoria brasileira foi escolhido por interesse coletivo do grupo e por apresentar um tópico interessante na sociedade atual. [CONTINUAR EXPLICAÇÃO]</p>
+		<p>
+			O <i>backend</i> da aplicação web foi desenvolvido em <a href="https://nodejs.org" target="blank">Node.js</a> e <a href="https://mysql.com" target="blank">MySQL</a>. Uma vez com o banco de dados convertido do CSV original para a versão final do projeto, fazer queries ficou extremamente simples. Usando a biblioteca <a href="https://github.com/sidorares/node-mysql2" target="blank">node-mysql2</a>, a aplicação principal em Node se conecta ao banco de dados em MySQL. O resto deste site contém queries que o grupo julgou interessantes e dignas de serem compartilhadas nesse trabalho. O <i>frontend</i> se comunica com o servidor através de requisições AJAX, indicando, como parâmetro, a query que deseja executar. Uma vez recebendo esse pedido, o servidor executa o comando SQL no banco de dados e retorna para o cliente o resultado da operação.
+		</p>
+		<p>
+			É importante notar que por motivos de segurança, um usuário com permissão apenas de <span class="code_highlight code_strong">SELECT</span> no banco de dados foi criado para a execução dos comandos em SQL. Dessa forma, mesmo se houver algum furo de sergurança no site e tentarem enviar comandos para uso inapropriado do banco de dados, o MySQL impedirá a ação de ser completada. Além disso, também é feita uma proteção em Node para criar mais uma barreira para possíveis ataques.
+		</p>
+		<p>
+			Seguem abaixo gráficos e tabelas de pesquisas interessantes sobre o banco de dados. Para ver as queries que originaram os dados necessários para cada item abaixo, basta clicar no botão "SQL" no canto superior direito da página.
+		</p>
 
-		<h2>Titulo do primeiro gráfico</h2>
+		<h2>Total gasto com aposentadoria por ano</h2>
 		<div class="code_chart_wrapper">
 			<div style="position: relative; width: 100%; height: 400px;">
 				<canvas id="chart1" style="width:50%; height: 400px;"></canvas>
@@ -40,7 +49,7 @@
 		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
 		<h2>Titulo do terceiro gráfico</h2>
 		<div style="position: relative; width: 100%; height: 400px;">
-			<canvas id="chart2" style="width:50%; height: 400px;"></canvas>
+			<canvas id="chart3" style="width:50%; height: 400px;"></canvas>
 		</div>
 		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
 	</div>

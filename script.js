@@ -56,32 +56,52 @@ var sqlButton = {
 sqlButton.entity.addEventListener('click', sqlButton.toggleShow);
 
 
-//Chart related javascript
-var canvas1 = document.getElementById("chart1");
-var ctxChart1 = canvas1.getContext("2d");
-
-var data1 = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [{
-            label: 'Scatter Dataset',
-            data: [
-            		{x:1996, y:12048},
-            		{x:1997, y:13947},
-            		{x:1998, y:29477}
-            	  ]
-        }]
-};
-
-
-var chart1 = new Chart(ctxChart1, {
-    type: 'line',
-    data: data1,
-    options: {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom'
-            }]
-        }
+function AJAX(query, params, callback) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      try{
+	      var response = JSON.parse(xhttp.responseText);
+	      callback(params, response);
+      }catch(e){
+      	console.log(e)
+      }
     }
-});
+  };
+  xhttp.open("GET", "http://159.203.135.67/query/"+query, true);
+  xhttp.send();
+}
+
+function buildChart(params, response){
+	var element = params[0];
+	var dataset = params[1];
+	dataset[0].data = response;
+	console.log(element, dataset);
+	new Chart(
+		(document.getElementById(element)).getContext("2d"), 
+		{
+	    	type: 'line',
+		    data: {datasets: dataset},
+		    options: {
+		        scales: {
+		            xAxes: [{
+		                type: 'linear',
+		                position: 'bottom'
+		            }]
+		        }
+		    }
+		}
+	);
+}
+
+window.onload = function(){
+	for(var count = 1; count <= 3; count++){
+		var params = [
+		'chart'+count,
+		dataset = [{
+				label: 'Total gasto por ano',
+			}]
+		];
+		AJAX('chart'+count, params, buildChart);
+	};
+}
