@@ -5,6 +5,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,900,300|Roboto:400,700,400italic|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<title>Aposentadoria</title>
 </head>
 <body>
@@ -34,25 +35,100 @@
 				<canvas id="chart1" style="width:50%; height: 400px;"></canvas>
 			</div>
 			<div class="code hide">
-				<p>SELECT ano, sum(valor)<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;FROM aposentadoria<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;GROUP BY ano<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY ano
+				<p><span class="code_strong">SELECT</span> ano <span class="code_strong">AS</span> x, sum(valor) <span class="code_strong">AS</span> y<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">FROM</span> aposentadoria<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">GROUP BY</span> ano<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">ORDER BY</span> ano
 				</p>
 			</div>
 		</div>
 		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-		<h2>Titulo do segundo gráfico</h2>
-		<div style="position: relative; width: 100%; height: 400px;">
-			<canvas id="chart2" style="width:50%; height: 400px;"></canvas>
+		<h2>Número de acidentes por ano</h2>
+		<div class="code_chart_wrapper">
+			<div style="position: relative; width: 100%; height: 400px;">
+				<canvas id="chart2" style="width:50%; height: 400px;"></canvas>
+			</div>
+			<div class="code hide">
+				<p><span class="code_strong">SELECT</span> ano <span class="code_strong">AS</span> x, sum(contribuicoes.quantidadecontribuintes) <span class="code_strong">AS</span> y, sexo.nome <span class="code_strong">AS</span> label<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">FROM</span> contribuicoes<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> contribuicoespopulacao <span class="code_strong">ON</span> contribuicoespopulacao.contribuicoesID = contribuicoes.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> populacao <span class="code_strong">ON</span> contribuicoespopulacao.populacaoID = populacao.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> sexo <span class="code_strong">ON</span> populacao.sexoID = sexo.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">GROUP BY</span> ano, sexo.nome;
+				</p>
+			</div>
 		</div>
 		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-		<h2>Titulo do terceiro gráfico</h2>
-		<div style="position: relative; width: 100%; height: 400px;">
-			<canvas id="chart3" style="width:50%; height: 400px;"></canvas>
+		<h2>Contribuições por sexo por ano (%)</h2>
+		<div class="code_chart_wrapper">
+			<div style="position: relative; width: 100%; height: 400px;">
+				<canvas id="chart3" style="width:50%; height: 400px;"></canvas>
+			</div>
+			<div class="code hide">
+				<p><span class="code_strong">SELECT</span> ano <span class="code_strong">AS</span> x, sum(contribuicoes.quantidadecontribuintes) <span class="code_strong">AS</span> y, sexo.nome <span class="code_strong">AS</span> label<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">FROM</span> contribuicoes<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> contribuicoespopulacao <span class="code_strong">ON</span> contribuicoespopulacao.contribuicoesID = contribuicoes.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> populacao <span class="code_strong">ON</span> contribuicoespopulacao.populacaoID = populacao.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> sexo <span class="code_strong">ON</span> populacao.sexoID = sexo.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">GROUP BY</span> ano, sexo.nome;
+				</p>
+			</div>
+		</div>
+		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+		<h2 style="position: relative; z-index: 2;">Contribuintes separados por faixa etária</h2>
+		<div class="code_chart_wrapper">
+			<div style="opacity:0.8;">
+			<div id="piechart" style="width: 100%; height: 500px; margin-bottom: -70px; margin-top: -50px; z-index: 1; position: relative; }"></div>
+			</div>
+			<div class="code hide">
+				<p><span class="code_strong">SELECT</span> sum(quantidadecontribuintes) <span class="code_strong">AS</span> value, faixaEtaria <span class="code_strong">AS</span> label<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">FROM</span> contribuicoes<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> contribuicoespopulacao <span class="code_strong">ON</span> contribuicoes.id = contribuicoespopulacao.contribuicoesID<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">INNER JOIN</span> populacao <span class="code_strong">ON</span> contribuicoespopulacao.populacaoID = populacao.id<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span class="code_strong">GROUP BY</span> faixaEtaria;
+				</p>
+			</div>
+		</div>
+		<p style="position: relative; z-index: 2;">Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+		<h2>Benefício médio per capita</h2>
+		<div class="code_chart_wrapper">
+			<div style="position: relative; width: 100%; height: 400px;">
+				<canvas id="chart5" style="width:50%; height: 400px;"></canvas>
+			</div>
+			<div class="code hide">
+				<p><span class="code_strong">SELECT</span> aposentadoria.ano <span class="code_strong">AS</span> x, sum(valor)/sum(quantidadeBeneficiosConcedidos) <span class="code_strong">AS</span> y<br />
+	<span class="code_strong">FROM</span> aposentadoria<br />
+	<span class="code_strong">WHERE</span> valor &lt;&gt; 0 <span class="code_strong">AND</span> quantidadeBeneficiosConcedidos &lt;&gt; 0<br />
+	<span class="code_strong">GROUP BY</span> ano;
+				</p>
+			</div>
+		</div>
+		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+		<h2>Contribuintes médios mensais por categoria</h2>
+		<div class="code_chart_wrapper">
+			<div style="position: relative; width: 100%; height: 400px;">
+				<canvas id="chart6" style="width:50%; height: 400px;"></canvas>
+			</div>
+			<div class="code hide">
+				<p><span class="code_strong">SELECT</span> sexo.nome, avg(contribuicoes.numeroMedioMensalContribuintes)
+	<span class="code_strong">FROM</span> contribuicoes
+	<span class="code_strong">INNER JOIN</span> contribuicoespopulacao <span class="code_strong">ON</span> contribuicoespopulacao.contribuicoesID = contribuicoes.id
+	<span class="code_strong">INNER JOIN</span> populacao <span class="code_strong">ON</span> contribuicoespopulacao.populacaoID = populacao.id
+	<span class="code_strong">INNER JOIN</span> sexo <span class="code_strong">ON</span> populacao.sexoID = sexo.id
+	<span class="code_strong">GROUP BY</span> sexo.nome
+	<span class="code_strong">UNION</span>
+<span class="code_strong">SELECT</span> regiao.tipo, avg(contribuicoes.numeroMedioMensalContribuintes)
+	<span class="code_strong">FROM</span> contribuicoes
+	<span class="code_strong">INNER JOIN</span> contribuicoespopulacao <span class="code_strong">ON</span> contribuicoespopulacao.contribuicoesID = contribuicoes.id
+	<span class="code_strong"><span class="code_strong">INNER JOIN</span> populacao <span class="code_strong">ON</span> contribuicoespopulacao.populacaoID = populacao.id
+	<span class="code_strong">INNER JOIN</span> regiao <span class="code_strong">ON</span> populacao.regiaoID = regiao.id
+	<span class="code_strong">GROUP BY</span> regiao.tipo;
+				</p>
+			</div>
 		</div>
 		<p>Lorem ipsum dolor sit amet. Blablablbal. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id <b>est laborum</b> et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
 	</div>
+	
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

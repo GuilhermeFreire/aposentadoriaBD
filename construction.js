@@ -28,7 +28,6 @@ connection.connect();
 
 function makeQuery(query, callback){
 	console.log("Executing query: ", query);
-	
 	connection.query(query, function(err, rows, fields) {
 	  if (err) throw err;
 	  callback({
